@@ -9,7 +9,7 @@ export default function Item({ item }) {
         <h1>{item.title}</h1>
         <p className="price">${item.price}</p>
       </Link>
-      <ItemCount stock={5} />
+      <ItemCount stock={5} initial={1} />
     </div>
   );
 }

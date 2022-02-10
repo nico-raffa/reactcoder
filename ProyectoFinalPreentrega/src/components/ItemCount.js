@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ItemCount.css";
-export default function ItemCount({ stock }) {
-  const [contador, setContador] = useState(1);
+export default function ItemCount({ stock, initial }) {
+  const [contador, setContador] = useState(initial);
   function onAdd(){
     console.log('Producto agregado')
   }

@@ -10,22 +10,13 @@ export default function ItemListContainer ({greeting}){
 
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true);
-    useEffect(()=>{
-        getItems.then((res)=>{
-            if(!categoryName){
-                setItems(res)
-            }else{                
-                const itemsFiltrados = res.filter((producto)=>{
-                    return producto.category === categoryName
-                })
-                setItems(itemsFiltrados)
-            }
-        }).catch((error)=>{
-            console.log(error)
-        }).finally(()=>{
-            setLoading(false)
-        })
-    },[categoryName])
+    useEffect(() => {
+        setLoading(true);
+        getItems(categoryName)
+          .then((res) => setItems(res))
+          .catch((error) => console.log(error))
+          .finally(() => setLoading(false));
+      }, [categoryName]);
 
     return(
         <div>

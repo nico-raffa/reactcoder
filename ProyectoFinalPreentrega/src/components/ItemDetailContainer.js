@@ -8,7 +8,7 @@ export default function ItemListContainer(){
     const [loading, setLoading] = useState(true);
     const { itemId } = useParams()
     useEffect(()=>{
-        getItems.then((items)=>{
+        getItems().then((items)=>{
             const item = items.find((i)=> i.id === Number(itemId))
             setItemDetail(item)
         }).catch((error)=>{
