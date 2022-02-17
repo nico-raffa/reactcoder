@@ -7,9 +7,14 @@ export default function CartContextProvider ({children}){
     const addToCart = (quantity, item) =>{
 
         if(isInCart(item.id)){
-            setCart(cart.filter(cartItem => cartItem.quantity += quantity))
-        }else{
-            setCart([...cart,{...item, quantity}])
+            const data = [...cart]
+            data.forEach(x => {
+                if(x.id === item.id) {
+                    x.quantity += quantity
+                }
+            })
+                }else{
+                    setCart([...cart,{...item, quantity}])
         }
     }
     const isInCart = (id)=>{
@@ -19,9 +24,12 @@ export default function CartContextProvider ({children}){
     const eraseCart =() => {
         setCart([])
     }
+    const removeItem = (id) =>{ 
+        setCart(cart.filter(cartItem => cartItem.id !== id))
+    }
     return(
         <>
-        <CartContext.Provider value={{cart, addToCart, eraseCart}}>
+        <CartContext.Provider value={{cart, addToCart, eraseCart, removeItem}}>
         {children}
         </CartContext.Provider>
         </>

@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 import { CartContext } from "../context/CartContext"
 export default function Cart (){
-    const { cart, eraseCart } = useContext(CartContext)
+    const { cart, eraseCart, removeItem } = useContext(CartContext)
 
     return(     
         <>
@@ -13,15 +13,15 @@ export default function Cart (){
             
         {cart.map((product)=>{
                 return(
-                    <div key={product.id}>
+                    <div className="card" key={product.id}>
                     <h3>{product.title}</h3>
                     <h4>${product.price}</h4>
                     <h3>{product.quantity}</h3>
-                    <button>X</button>
+                    <button className="btn" onClick={()=>removeItem(product.id)}>X</button>
                 </div>)
                 
             })}
-        <button onClick={eraseCart}>Vaciar carrito</button>
+        <button className="btn-dark" onClick={eraseCart}>Vaciar carrito</button>
             </>
         )}
         </>
