@@ -3,9 +3,12 @@ import Item from "./Item";
 export default function ItemList({items}){
     return(
         <div style={{ display: "flex" }}>
-            {items.map((item)=>(
-                    <Item key={item.id} item={item}/>
+            {items.length > 0 && items.map((item)=>(
+                
+                <Item key={item.id} item={item}/>
                 ))}
+                {console.log(items)}
+                
         </div>
     )
 }

@@ -14,7 +14,13 @@ export default function ItemListContainer({ greeting }) {
   useEffect(() => {
     setLoading(true);
     getItems(categoryName)
-      .then((res) => setItems(res))
+      .then((snapshot) =>{
+        const products = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setItems(products)
+      })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
   }, [categoryName]);
